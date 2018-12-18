@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using ECommerce.Core.Entities;
 using ECommerce.Core.Gateways;
-using Microsoft.EntityFrameworkCore;
+using ECommerce.Infrastructure.Data;
 
 namespace ECommerce.Infrastructure.Gateways
 {
     public class EntityFrameworkProviderManager : IProviderManager
     {
-        private readonly DbContext context;
+        private readonly EntityFrameworkDbContext context;
         private readonly Dictionary<Type, object> providers;
 
-        public EntityFrameworkProviderManager(DbContext context)
+        public EntityFrameworkProviderManager(EntityFrameworkDbContext context)
         {
             this.context = context;
             this.providers = new Dictionary<Type, object>();

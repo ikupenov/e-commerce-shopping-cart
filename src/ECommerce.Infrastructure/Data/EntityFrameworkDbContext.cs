@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ECommerce.Core.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Infrastructure.Data
 {
@@ -7,6 +8,13 @@ namespace ECommerce.Infrastructure.Data
         public EntityFrameworkDbContext(DbContextOptions<EntityFrameworkDbContext> options)
             : base(options)
         {
+        }
+
+        public DbSet<Product> Products { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

@@ -16,8 +16,6 @@ namespace ECommerce.Api.Configuration
             var databaseName = configuration.GetSettings<DatabaseSettings>().DatabaseName;
             @this.AddDbContext<EntityFrameworkDbContext>(o => o.UseInMemoryDatabase(databaseName), ServiceLifetime.Scoped);
 
-            @this.AddScoped<DbContext, EntityFrameworkDbContext>();
-
             return @this;
         }
 

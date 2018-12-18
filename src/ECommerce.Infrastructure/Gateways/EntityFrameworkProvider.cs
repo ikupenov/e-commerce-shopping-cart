@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using ECommerce.Core.Entities;
 using ECommerce.Core.Gateways;
+using ECommerce.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Infrastructure.Gateways
@@ -11,10 +12,10 @@ namespace ECommerce.Infrastructure.Gateways
     public class EntityFrameworkProvider<TEntity> : IProvider<TEntity>
         where TEntity : Entity
     {
-        private readonly DbContext context;
+        private readonly EntityFrameworkDbContext context;
         private readonly DbSet<TEntity> entities;
 
-        public EntityFrameworkProvider(DbContext context)
+        public EntityFrameworkProvider(EntityFrameworkDbContext context)
         {
             this.context = context;
             this.entities = this.context.Set<TEntity>();
