@@ -47,7 +47,7 @@ namespace ECommerce.Api
 
         public override void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseDeveloperExceptionPage();
+            app.UseDeveloperExceptionPage().SeedFakeData();
 
             base.Configure(app, env);
         }

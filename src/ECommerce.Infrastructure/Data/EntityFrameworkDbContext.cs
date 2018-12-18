@@ -1,5 +1,4 @@
-﻿using ECommerce.Core.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Infrastructure.Data
 {
@@ -8,13 +7,6 @@ namespace ECommerce.Infrastructure.Data
         public EntityFrameworkDbContext(DbContextOptions<EntityFrameworkDbContext> options)
             : base(options)
         {
-        }
-
-        public DbSet<Cart> Carts { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
         }
     }
 }
