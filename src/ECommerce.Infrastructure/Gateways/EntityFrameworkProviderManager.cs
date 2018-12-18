@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Infrastructure.Gateways
 {
-    public class EntityFrameworkManager : IManager
+    public class EntityFrameworkProviderManager : IProviderManager
     {
         private readonly DbContext context;
         private readonly Dictionary<Type, object> providers;
 
-        public EntityFrameworkManager(DbContext context)
+        public EntityFrameworkProviderManager(DbContext context)
         {
             this.context = context;
             this.providers = new Dictionary<Type, object>();
@@ -33,6 +33,8 @@ namespace ECommerce.Infrastructure.Gateways
         }
 
         public void SaveChanges() => this.context.SaveChanges();
+
+        public async void SaveChangesAsync() => await this.context.SaveChangesAsync();
 
         public void Dispose() => this.context.Dispose();
     }

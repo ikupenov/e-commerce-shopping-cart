@@ -2,7 +2,7 @@
 
 namespace ECommerce.Api.Configuration
 {
-    public static class ConfigurationExtensions
+    internal static class ConfigurationExtensions
     {
         public static TSettings GetSettings<TSettings>(this IConfiguration @this)
         {

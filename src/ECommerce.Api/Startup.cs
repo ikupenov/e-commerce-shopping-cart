@@ -21,9 +21,10 @@ namespace ECommerce.Api
         public virtual void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddInMemoryDatabase(Configuration)
+                .AddDatabase(Configuration)
                 .AddAutoMapper()
-                .AddGateways();
+                .AddGateways()
+                .AddManagers();
 
             services
                 .AddMvc()

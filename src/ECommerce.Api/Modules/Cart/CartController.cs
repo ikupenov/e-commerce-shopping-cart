@@ -4,13 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Api.Modules.Cart
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class CartController : ControllerBase
+    public class CartController : ApiControllerBase
     {
-        private readonly IManager manager;
+        private readonly IProviderManager manager;
 
-        public CartController(IManager manager)
+        public CartController(IProviderManager manager)
         {
             this.manager = manager;
         }

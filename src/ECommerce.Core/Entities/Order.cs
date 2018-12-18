@@ -3,10 +3,14 @@ using System.Collections.Generic;
 
 namespace ECommerce.Core.Entities
 {
-    public sealed class Cart : Entity
+    public sealed class Order : Entity
     {
         public Guid CustomerId { get; set; }
 
         public IEnumerable<CartItem> CartItems { get; set; }
+
+        public string Address { get; set; }
+
+        public decimal TotalPrice { get; set; }
     }
 }

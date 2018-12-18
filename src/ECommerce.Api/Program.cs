@@ -16,6 +16,5 @@ namespace ECommerce.Api
             var assemblyName = typeof(Startup).GetTypeInfo().Assembly.FullName;
             return WebHost.CreateDefaultBuilder(args).UseStartup(assemblyName);
         }
-
     }
 }

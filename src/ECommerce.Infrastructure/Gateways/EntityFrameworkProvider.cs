@@ -12,22 +12,22 @@ namespace ECommerce.Infrastructure.Gateways
         where TEntity : Entity
     {
         private readonly DbContext context;
-        private readonly DbSet<TEntity> set;
+        private readonly DbSet<TEntity> entities;
 
         public EntityFrameworkProvider(DbContext context)
         {
             this.context = context;
-            this.set = this.context.Set<TEntity>();
+            this.entities = this.context.Set<TEntity>();
         }
 
-        public IEnumerable<TEntity> GetAll() => this.set;
+        public IEnumerable<TEntity> GetAll() => this.entities;
 
-        public IEnumerable<TEntity> GetBy(Expression<Func<TEntity, bool>> expression) => this.set.Where(expression);
+        public IEnumerable<TEntity> GetBy(Expression<Func<TEntity, bool>> expression) => this.entities.Where(expression);
 
-        public void Create(TEntity entity) => this.set.Add(entity);
+        public void Create(TEntity entity) => this.entities.Add(entity);
 
-        public void Update(TEntity entity) => this.set.Update(entity);
+        public void Update(TEntity entity) => this.entities.Update(entity);
 
-        public void Delete(TEntity entity) => this.set.Remove(entity);
+        public void Delete(TEntity entity) => this.entities.Remove(entity);
     }
 }
