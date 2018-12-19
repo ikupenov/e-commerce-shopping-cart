@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ECommerce.Api.Modules.Users
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/users")]
     public class UsersController : ControllerBase
     {
         private readonly IUserManager userManager;

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ECommerce.Api.Modules.Cart
 {
     [ApiController]
-    [Route("api/users/{userId}/[controller]")]
+    [Route("api/users/{userId}/cart")]
     public class CartController : ControllerBase
     {
         private readonly ICartManager cartManager;
