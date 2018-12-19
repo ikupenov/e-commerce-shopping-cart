@@ -22,7 +22,20 @@ namespace ECommerce.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Cart>()
+                .HasMany(c => c.CartItems)
+                .WithOne(i => i.Cart);
+
+            modelBuilder.Entity<CartItem>()
+                .HasOne(i => i.Cart)
+                .WithMany(c => c.CartItems);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+
+            optionsBuilder.UseLazyLoadingProxies();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using ECommerce.Core.Entities;
+using AutoMapper;
+using ECommerce.Core.Managers.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Api.Modules.Users
@@ -9,16 +10,31 @@ namespace ECommerce.Api.Modules.Users
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<IEnumerable<User>> GetUsers()
+        private readonly IUserManager userManager;
+        private readonly IMapper mapper;
+
+        public UsersController(IUserManager userManager, IMapper mapper)
         {
-            return Ok("Getting all users");
+            this.userManager = userManager;
+            this.mapper = mapper;
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<UserDTO>> GetUsers()
+        {
+            var users = this.userManager.GetUsers();
+            var usersDto = this.mapper.Map<IEnumerable<UserDTO>>(users);
+
+            return Ok(usersDto);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetUserById(Guid userId)
+        public ActionResult<UserDTO> GetUserById(Guid id)
         {
-            return Ok($"Getting user by ID {userId}");
+            var user = this.userManager.GetUserById(id);
+            var userDto = this.mapper.Map<UserDTO>(user);
+
+            return Ok(userDto);
         }
     }
 }

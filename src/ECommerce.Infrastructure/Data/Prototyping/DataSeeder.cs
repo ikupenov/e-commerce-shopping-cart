@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using ECommerce.Core.Entities;
 using ECommerce.Core.Gateways;
 
-namespace ECommerce.Infrastructure.Data
+namespace ECommerce.Infrastructure.Data.Prototyping
 {
     public class DataSeeder
     {
@@ -16,6 +18,8 @@ namespace ECommerce.Infrastructure.Data
         public void Seed()
         {
             this.SeedUsers()
+                .SeedCarts()
+                .SeedCartItems()
                 .SeedProducts();
         }
 
@@ -70,6 +74,63 @@ namespace ECommerce.Infrastructure.Data
             productProvider.Create(product1);
             productProvider.Create(product2);
             productProvider.Create(product3);
+
+            this.providerManager.SaveChanges();
+
+            return this;
+        }
+
+        public DataSeeder SeedCarts(bool shouldSeedDependencies = false)
+        {
+            var cartProvider = this.providerManager.GetProvider<Cart>();
+            var userProvider = this.providerManager.GetProvider<User>();
+
+            var users = userProvider.GetAll();
+            if (shouldSeedDependencies && !users.Any())
+            {
+                this.SeedUsers();
+            }
+
+            foreach (var user in users)
+            {
+                var cart = new Cart
+                {
+                    Id = Guid.NewGuid(),
+                    User = user,
+                    CartItems = new List<CartItem>()
+                };
+
+                cartProvider.Create(cart);
+            }
+
+            this.providerManager.SaveChanges();
+
+            return this;
+        }
+
+        public DataSeeder SeedCartItems(bool shouldSeedDependencies = false)
+        {
+            var cartItemProvider = this.providerManager.GetProvider<CartItem>();
+            var cartProvider = this.providerManager.GetProvider<Cart>();
+
+            var carts = cartProvider.GetAll();
+            if (shouldSeedDependencies && !carts.Any())
+            {
+                this.SeedCarts();
+            }
+
+            foreach (var cart in carts)
+            {
+                var cartItem = new CartItem
+                {
+                    Id = Guid.NewGuid(),
+                    Cart = cart,
+                    Quantity = 1
+                };
+
+                cart.CartItems.Add(cartItem);
+                cartItemProvider.Create(cartItem);
+            }
 
             this.providerManager.SaveChanges();
 

@@ -1,5 +1,5 @@
 ﻿using ECommerce.Core.Gateways;
-using ECommerce.Infrastructure.Data;
+using ECommerce.Infrastructure.Data.Prototyping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 

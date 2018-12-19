@@ -1,7 +1,11 @@
-﻿namespace ECommerce.Core.Entities
+﻿using System;
+
+namespace ECommerce.Api.Modules.Users
 {
-    public class User : Entity
+    public class UserDTO
     {
+        public Guid Id { get; set; }
+
         public string Username { get; set; }
 
         public string FirstName { get; set; }

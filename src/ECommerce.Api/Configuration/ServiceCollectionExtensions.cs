@@ -1,6 +1,8 @@
 ﻿using ECommerce.Api.Settings;
 using ECommerce.Core.Gateways;
-using ECommerce.Core.Managers;
+using ECommerce.Core.Managers.Cart;
+using ECommerce.Core.Managers.Products;
+using ECommerce.Core.Managers.Users;
 using ECommerce.Infrastructure.Data;
 using ECommerce.Infrastructure.Gateways;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +33,7 @@ namespace ECommerce.Api.Configuration
         {
             @this.AddScoped<IProductManager, ProductManager>();
             @this.AddScoped<ICartManager, CartManager>();
+            @this.AddScoped<IUserManager, UserManager>();
 
             return @this;
         }

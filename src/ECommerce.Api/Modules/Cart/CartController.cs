@@ -1,5 +1,6 @@
 ﻿using System;
-using ECommerce.Core.Managers;
+using AutoMapper;
+using ECommerce.Core.Managers.Cart;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Api.Modules.Cart
@@ -9,16 +10,21 @@ namespace ECommerce.Api.Modules.Cart
     public class CartController : ControllerBase
     {
         private readonly ICartManager cartManager;
+        private readonly IMapper mapper;
 
-        public CartController(ICartManager cartManager)
+        public CartController(ICartManager cartManager, IMapper mapper)
         {
             this.cartManager = cartManager;
+            this.mapper = mapper;
         }
 
         [HttpGet]
-        public IActionResult GetCart(Guid userId)
+        public ActionResult<CartDTO> GetCart(Guid userId)
         {
-            return Ok($"Getting cart with user's ID {userId}");
+            var cart = this.cartManager.GetCartByUserId(userId);
+            var cartDto = this.mapper.Map<CartDTO>(cart);
+
+            return Ok(cartDto);
         }
 
         [HttpPut]

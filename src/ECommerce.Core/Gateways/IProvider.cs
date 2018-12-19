@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using ECommerce.Core.Entities;
 
@@ -8,9 +8,9 @@ namespace ECommerce.Core.Gateways
     public interface IProvider<TEntity>
         where TEntity : Entity
     {
-        IEnumerable<TEntity> GetAll();
+        IQueryable<TEntity> GetAll();
 
-        IEnumerable<TEntity> GetBy(Expression<Func<TEntity, bool>> expression);
+        IQueryable<TEntity> GetBy(Expression<Func<TEntity, bool>> expression);
 
         void Create(TEntity entity);
 

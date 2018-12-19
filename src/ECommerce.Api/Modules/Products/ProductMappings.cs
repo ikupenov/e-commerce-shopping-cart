@@ -7,7 +7,7 @@ namespace ECommerce.Api.Modules.Products
     {
         public ProductMappings()
         {
-            base.CreateMap<ProductViewModel, Product>();
+            base.CreateMap<ProductDTO, Product>();
         }
     }
 }

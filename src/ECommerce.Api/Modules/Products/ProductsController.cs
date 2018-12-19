@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
-using ECommerce.Core.Entities;
-using ECommerce.Core.Managers;
+using ECommerce.Core.Managers.Products;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Api.Modules.Products
@@ -10,23 +9,22 @@ namespace ECommerce.Api.Modules.Products
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        private readonly IMapper mapper;
         private readonly IProductManager productManager;
+        private readonly IMapper mapper;
 
-        public ProductsController(IMapper mapper, IProductManager productManager)
+        public ProductsController(IProductManager productManager, IMapper mapper)
         {
-            this.mapper = mapper;
             this.productManager = productManager;
+            this.mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Product>> GetProducts()
+        public ActionResult<IEnumerable<ProductDTO>> GetProducts()
         {
             var products = this.productManager.GetProducts();
+            var productsDto = this.mapper.Map<IEnumerable<ProductDTO>>(products);
 
-            var productsViewModel = this.mapper.Map<IEnumerable<ProductViewModel>>(products);
-
-            return Ok(productsViewModel);
+            return Ok(productsDto);
         }
     }
 }

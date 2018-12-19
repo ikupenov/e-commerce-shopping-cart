@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using ECommerce.Core.Entities;
@@ -21,9 +20,9 @@ namespace ECommerce.Infrastructure.Gateways
             this.entities = this.context.Set<TEntity>();
         }
 
-        public IEnumerable<TEntity> GetAll() => this.entities;
+        public IQueryable<TEntity> GetAll() => this.entities;
 
-        public IEnumerable<TEntity> GetBy(Expression<Func<TEntity, bool>> expression) => this.entities.Where(expression);
+        public IQueryable<TEntity> GetBy(Expression<Func<TEntity, bool>> expression) => this.entities.Where(expression);
 
         public void Create(TEntity entity) => this.entities.Add(entity);
 

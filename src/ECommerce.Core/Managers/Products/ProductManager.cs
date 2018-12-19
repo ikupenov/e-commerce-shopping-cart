@@ -2,7 +2,7 @@
 using ECommerce.Core.Entities;
 using ECommerce.Core.Gateways;
 
-namespace ECommerce.Core.Managers
+namespace ECommerce.Core.Managers.Products
 {
     public sealed class ProductManager : Manager, IProductManager
     {
