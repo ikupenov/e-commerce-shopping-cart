@@ -1,4 +1,5 @@
-﻿using ECommerce.Api.Settings;
+﻿using Castle.Core.Logging;
+using ECommerce.Api.Settings;
 using ECommerce.Core.Gateways;
 using ECommerce.Core.Managers.Cart;
 using ECommerce.Core.Managers.Products;
@@ -34,6 +35,13 @@ namespace ECommerce.Api.Configuration
             @this.AddScoped<IProductManager, ProductManager>();
             @this.AddScoped<ICartManager, CartManager>();
             @this.AddScoped<IUserManager, UserManager>();
+
+            return @this;
+        }
+
+        public static IServiceCollection AddLogging(this IServiceCollection @this)
+        {
+            @this.AddSingleton<ILogger, ConsoleLogger>();
 
             return @this;
         }

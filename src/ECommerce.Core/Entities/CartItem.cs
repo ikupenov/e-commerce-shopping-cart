@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ECommerce.Core.Entities
+﻿namespace ECommerce.Core.Entities
 {
     public class CartItem : Entity
     {

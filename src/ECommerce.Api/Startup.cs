@@ -21,15 +21,15 @@ namespace ECommerce.Api
         public virtual void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddFluentValidation(v => v.RegisterValidatorsFromAssemblyContaining<Startup>());
-
-            services
                 .AddDatabase(Configuration)
                 .AddAutoMapper()
                 .AddGateways()
                 .AddManagers();
+
+            services
+                .AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddFluentValidation(v => v.RegisterValidatorsFromAssemblyContaining<Startup>());
         }
 
         public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -58,6 +58,13 @@ namespace ECommerce.Api
         public StartupProduction(IConfiguration configuration)
             : base(configuration)
         {
+        }
+
+        public override void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            app.UseExceptionHandling();
+
+            base.Configure(app, env);
         }
     }
 }

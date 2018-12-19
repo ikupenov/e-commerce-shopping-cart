@@ -28,8 +28,15 @@ namespace ECommerce.Api.Modules.Cart
         }
 
         [HttpPut]
-        public IActionResult UpdateCart(Guid userId)
+        public IActionResult UpdateCart(Guid userId, [FromBody]CartDTO cartDTO)
         {
+            if (!ModelState.IsValid)
+            {
+
+            }
+
+            var cart = this.mapper.Map<Core.Entities.Cart>(cartDTO);
+
             return Ok($"Adding to user's cart with ID {userId}");
         }
 

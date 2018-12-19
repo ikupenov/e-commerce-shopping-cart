@@ -2,11 +2,12 @@
 
 namespace ECommerce.Api.Modules.Cart
 {
-    public class CartMappings : Profile
+    internal class CartMappings : Profile
     {
         public CartMappings()
         {
-            base.CreateMap<CartItemDTO, Core.Entities.Cart>();
+            base.CreateMap<Core.Entities.Cart, CartDTO>();
+            base.CreateMap<CartDTO, Core.Entities.Cart>();
         }
     }
 }

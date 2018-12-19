@@ -4,6 +4,6 @@ namespace ECommerce.Api.Modules.Cart
 {
     public class CartDTO
     {
-        IEnumerable<CartItemDTO> CartItems { get; set; }
+        public IEnumerable<CartItemDTO> CartItems { get; set; }
     }
 }

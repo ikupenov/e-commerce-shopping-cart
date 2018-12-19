@@ -3,10 +3,11 @@ using ECommerce.Core.Entities;
 
 namespace ECommerce.Api.Modules.Products
 {
-    public class ProductMappings : Profile
+    internal class ProductMappings : Profile
     {
         public ProductMappings()
         {
+            base.CreateMap<Product, ProductDTO>();
             base.CreateMap<ProductDTO, Product>();
         }
     }

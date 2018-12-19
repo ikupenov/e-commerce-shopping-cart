@@ -1,4 +1,5 @@
-﻿using ECommerce.Core.Gateways;
+﻿using ECommerce.Api.Middlewares;
+using ECommerce.Core.Gateways;
 using ECommerce.Infrastructure.Data.Prototyping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,13 @@ namespace ECommerce.Api.Configuration
 
                 dataSeeder.Seed();
             }
+
+            return @this;
+        }
+
+        public static IApplicationBuilder UseExceptionHandling(this IApplicationBuilder @this)
+        {
+            @this.UseMiddleware<ExceptionMiddleware>();
 
             return @this;
         }

@@ -2,7 +2,7 @@
 
 namespace ECommerce.Api.Modules.Cart
 {
-    public class CartItemValidator : AbstractValidator<CartItemDTO>
+    internal class CartItemValidator : AbstractValidator<CartItemDTO>
     {
         public CartItemValidator()
         {

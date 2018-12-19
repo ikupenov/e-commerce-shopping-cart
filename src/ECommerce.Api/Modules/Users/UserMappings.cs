@@ -3,10 +3,11 @@ using ECommerce.Core.Entities;
 
 namespace ECommerce.Api.Modules.Users
 {
-    public class UserMappings : Profile
+    internal class UserMappings : Profile
     {
         public UserMappings()
         {
+            base.CreateMap<User, UserDTO>();
             base.CreateMap<UserDTO, User>();
         }
     }
