@@ -10,5 +10,15 @@ namespace ECommerce.Core.Managers
         }
 
         protected IProviderManager ProviderManager { get; }
+
+        protected void SaveChanges()
+        {
+            this.ProviderManager.SaveChanges();
+        }
+
+        protected async void SaveChangesAsync()
+        {
+            await this.ProviderManager.SaveChangesAsync();
+        }
     }
 }

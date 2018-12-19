@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using ECommerce.Core.Entities;
 using ECommerce.Core.Gateways;
 using ECommerce.Infrastructure.Data;
@@ -34,7 +35,7 @@ namespace ECommerce.Infrastructure.Gateways
 
         public void SaveChanges() => this.context.SaveChanges();
 
-        public async void SaveChangesAsync() => await this.context.SaveChangesAsync();
+        public async Task SaveChangesAsync() => await this.context.SaveChangesAsync();
 
         public void Dispose() => this.context.Dispose();
     }

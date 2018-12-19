@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using ECommerce.Core.Entities;
 using ECommerce.Core.Gateways;
@@ -19,7 +18,6 @@ namespace ECommerce.Infrastructure.Data.Prototyping
         {
             this.SeedUsers()
                 .SeedCarts()
-                .SeedCartItems()
                 .SeedProducts();
         }
 
@@ -96,40 +94,10 @@ namespace ECommerce.Infrastructure.Data.Prototyping
                 var cart = new Cart
                 {
                     Id = Guid.NewGuid(),
-                    User = user,
-                    CartItems = new List<CartItem>()
+                    User = user
                 };
 
                 cartProvider.Create(cart);
-            }
-
-            this.providerManager.SaveChanges();
-
-            return this;
-        }
-
-        public DataSeeder SeedCartItems(bool shouldSeedDependencies = false)
-        {
-            var cartItemProvider = this.providerManager.GetProvider<CartItem>();
-            var cartProvider = this.providerManager.GetProvider<Cart>();
-
-            var carts = cartProvider.GetAll();
-            if (shouldSeedDependencies && !carts.Any())
-            {
-                this.SeedCarts();
-            }
-
-            foreach (var cart in carts)
-            {
-                var cartItem = new CartItem
-                {
-                    Id = Guid.NewGuid(),
-                    Cart = cart,
-                    Quantity = 1
-                };
-
-                cart.CartItems.Add(cartItem);
-                cartItemProvider.Create(cartItem);
             }
 
             this.providerManager.SaveChanges();

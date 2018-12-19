@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using AutoMapper;
 using ECommerce.Core.Managers.Products;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,8 @@ namespace ECommerce.Api.Modules.Products
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductDTO>> GetProducts()
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(IEnumerable<ProductDTO>))]
+        public IActionResult GetProducts()
         {
             var products = this.productManager.GetProducts();
             var productsDto = this.mapper.Map<IEnumerable<ProductDTO>>(products);

@@ -62,7 +62,7 @@ namespace ECommerce.Api
 
         public override void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseExceptionHandling();
+            app.UseApiExceptionHandler();
 
             base.Configure(app, env);
         }

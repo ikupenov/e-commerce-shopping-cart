@@ -21,7 +21,7 @@ namespace ECommerce.Api.Configuration
             return @this;
         }
 
-        public static IApplicationBuilder UseExceptionHandling(this IApplicationBuilder @this)
+        public static IApplicationBuilder UseApiExceptionHandler(this IApplicationBuilder @this)
         {
             @this.UseMiddleware<ExceptionMiddleware>();
 

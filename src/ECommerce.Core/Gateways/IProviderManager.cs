@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ECommerce.Core.Entities;
 
 namespace ECommerce.Core.Gateways
@@ -9,6 +10,6 @@ namespace ECommerce.Core.Gateways
 
         void SaveChanges();
 
-        void SaveChangesAsync();
+        Task SaveChangesAsync();
     }
 }

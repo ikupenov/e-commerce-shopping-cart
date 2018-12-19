@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using AutoMapper;
 using ECommerce.Core.Managers.Users;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +21,8 @@ namespace ECommerce.Api.Modules.Users
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<UserDTO>> GetUsers()
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(IEnumerable<UserDTO>))]
+        public IActionResult GetUsers()
         {
             var users = this.userManager.GetUsers();
             var usersDto = this.mapper.Map<IEnumerable<UserDTO>>(users);
@@ -29,7 +31,8 @@ namespace ECommerce.Api.Modules.Users
         }
 
         [HttpGet("{id}")]
-        public ActionResult<UserDTO> GetUserById(Guid id)
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(UserDTO))]
+        public IActionResult GetUserById(Guid id)
         {
             var user = this.userManager.GetUserById(id);
             var userDto = this.mapper.Map<UserDTO>(user);

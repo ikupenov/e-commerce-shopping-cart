@@ -23,12 +23,10 @@ namespace ECommerce.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Cart>()
-                .HasMany(c => c.CartItems)
-                .WithOne(i => i.Cart);
+                .HasMany(c => c.CartItems);
 
             modelBuilder.Entity<CartItem>()
-                .HasOne(i => i.Cart)
-                .WithMany(c => c.CartItems);
+                .HasOne(i => i.Product);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -8,8 +8,7 @@ namespace ECommerce.Core.Managers.Products
     {
         private readonly IProvider<Product> productProvider;
 
-        public ProductManager(IProviderManager providerManager) 
-            : base(providerManager)
+        public ProductManager(IProviderManager providerManager) : base(providerManager)
         {
             this.productProvider = this.ProviderManager.GetProvider<Product>();
         }
