@@ -1,6 +1,6 @@
 ﻿namespace ECommerce.Core.Entities
 {
-    public sealed class Customer : Entity
+    public sealed class User : Entity
     {
         public string Username { get; set; }
 

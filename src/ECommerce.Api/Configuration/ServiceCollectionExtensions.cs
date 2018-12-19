@@ -30,6 +30,7 @@ namespace ECommerce.Api.Configuration
         public static IServiceCollection AddManagers(this IServiceCollection @this)
         {
             @this.AddScoped<IProductManager, ProductManager>();
+            @this.AddScoped<ICartManager, CartManager>();
 
             return @this;
         }

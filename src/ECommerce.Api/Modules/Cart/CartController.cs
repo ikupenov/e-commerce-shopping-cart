@@ -1,25 +1,36 @@
-﻿using System.Linq;
-using ECommerce.Core.Gateways;
+﻿using System;
+using ECommerce.Core.Managers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Api.Modules.Cart
 {
-    public class CartController : ApiControllerBase
+    [ApiController]
+    [Route("api/users/{userId}/[controller]")]
+    public class CartController : ControllerBase
     {
-        private readonly IProviderManager manager;
+        private readonly ICartManager cartManager;
 
-        public CartController(IProviderManager manager)
+        public CartController(ICartManager cartManager)
         {
-            this.manager = manager;
+            this.cartManager = cartManager;
         }
 
         [HttpGet]
-        public ActionResult<CartViewModel> Index()
+        public IActionResult GetCart(Guid userId)
         {
-            var cartProvider = this.manager.GetProvider<Core.Entities.Cart>();
-            var carts = cartProvider.GetAll().ToList();
+            return Ok($"Getting cart with user's ID {userId}");
+        }
 
-            return new OkObjectResult(new CartViewModel());
+        [HttpPut]
+        public IActionResult UpdateCart(Guid userId)
+        {
+            return Ok($"Adding to user's cart with ID {userId}");
+        }
+
+        [HttpDelete]
+        public IActionResult ClearCart(Guid userId)
+        {
+            return Ok();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace ECommerce.Api.Configuration
                 var providerManager = scope.ServiceProvider.GetService<IProviderManager>();
                 var dataSeeder = new DataSeeder(providerManager);
 
-                dataSeeder.SeedProducts();
+                dataSeeder.Seed();
             }
 
             return @this;

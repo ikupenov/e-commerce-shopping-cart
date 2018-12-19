@@ -6,7 +6,7 @@ namespace ECommerce.Api.Modules.Cart
     {
         public CartMappings()
         {
-            CreateMap<CartViewModel, Core.Entities.Cart>();
+            base.CreateMap<CartViewModel, Core.Entities.Cart>();
         }
     }
 }

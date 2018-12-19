@@ -5,7 +5,7 @@ namespace ECommerce.Core.Entities
 {
     public sealed class Cart : Entity
     {
-        public Guid CustomerId { get; set; }
+        public Guid UserId { get; set; }
 
         public IEnumerable<CartItem> CartItems { get; set; }
     }
