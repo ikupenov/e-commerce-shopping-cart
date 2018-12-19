@@ -27,5 +27,18 @@ namespace ECommerce.Api.Configuration
 
             return @this;
         }
+
+        public static IApplicationBuilder UseSwaggerUI(this IApplicationBuilder @this)
+        {
+            @this.UseSwagger();
+
+            @this.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "E-commerce API");
+                options.RoutePrefix = string.Empty;
+            });
+
+            return @this;
+        }
     }
 }

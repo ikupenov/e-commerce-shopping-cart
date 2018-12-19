@@ -9,6 +9,7 @@ using ECommerce.Infrastructure.Gateways;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace ECommerce.Api.Configuration
 {
@@ -42,6 +43,22 @@ namespace ECommerce.Api.Configuration
         public static IServiceCollection AddLogging(this IServiceCollection @this)
         {
             @this.AddSingleton<ILogger, ConsoleLogger>();
+
+            return @this;
+        }
+
+        public static IServiceCollection AddSwagger(this IServiceCollection @this)
+        {
+            @this.AddSwaggerGen(options =>
+            {
+                var info = new Info
+                {
+                    Title = "E-commerce API",
+                    Version = "v1"
+                };
+
+                options.SwaggerDoc("v1", info);
+            });
 
             return @this;
         }
