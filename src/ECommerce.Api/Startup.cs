@@ -22,10 +22,10 @@ namespace ECommerce.Api
         {
             services
                 .AddDatabase(Configuration)
+                .AddSwagger(Configuration)
                 .AddAutoMapper()
                 .AddGateways()
-                .AddManagers()
-                .AddSwagger();
+                .AddManagers();
 
             services
                 .AddMvc()
@@ -35,7 +35,7 @@ namespace ECommerce.Api
 
         public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseMvc().UseSwaggerUI();
+            app.UseMvc().UseSwaggerUI(Configuration);
         }
     }
 

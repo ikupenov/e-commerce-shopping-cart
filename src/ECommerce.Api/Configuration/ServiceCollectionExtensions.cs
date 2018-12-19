@@ -47,17 +47,19 @@ namespace ECommerce.Api.Configuration
             return @this;
         }
 
-        public static IServiceCollection AddSwagger(this IServiceCollection @this)
+        public static IServiceCollection AddSwagger(this IServiceCollection @this, IConfiguration configuration)
         {
+            var swaggerSettings = configuration.GetSettings<SwaggerSettings>();
+
             @this.AddSwaggerGen(options =>
             {
                 var info = new Info
                 {
-                    Title = "E-commerce API",
-                    Version = "v1"
+                    Title = swaggerSettings.Title,
+                    Version = swaggerSettings.Version
                 };
 
-                options.SwaggerDoc("v1", info);
+                options.SwaggerDoc(swaggerSettings.Version, info);
             });
 
             return @this;

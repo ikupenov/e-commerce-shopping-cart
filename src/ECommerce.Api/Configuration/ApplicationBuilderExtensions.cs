@@ -1,7 +1,9 @@
 ﻿using ECommerce.Api.Middlewares;
+using ECommerce.Api.Settings;
 using ECommerce.Core.Gateways;
 using ECommerce.Infrastructure.Data.Prototyping;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ECommerce.Api.Configuration
@@ -28,13 +30,15 @@ namespace ECommerce.Api.Configuration
             return @this;
         }
 
-        public static IApplicationBuilder UseSwaggerUI(this IApplicationBuilder @this)
+        public static IApplicationBuilder UseSwaggerUI(this IApplicationBuilder @this, IConfiguration configuration)
         {
+            var swaggerSettings = configuration.GetSettings<SwaggerSettings>();
+
             @this.UseSwagger();
 
             @this.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "E-commerce API");
+                options.SwaggerEndpoint(swaggerSettings.Endpoint, swaggerSettings.Title);
                 options.RoutePrefix = string.Empty;
             });
 
