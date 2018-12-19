@@ -9,7 +9,5 @@ namespace ECommerce.Api.Modules.Products
         public string Name { get; set; }
 
         public decimal Price { get; set; }
-
-        public int Inventory { get; set; }
     }
 }

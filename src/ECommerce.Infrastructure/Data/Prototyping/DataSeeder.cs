@@ -49,24 +49,21 @@ namespace ECommerce.Infrastructure.Data.Prototyping
             {
                 Id = Guid.NewGuid(),
                 Name = "Apple",
-                Price = 1,
-                Inventory = 10
+                Price = 1
             };
 
             var product2 = new Product
             {
                 Id = Guid.NewGuid(),
                 Name = "Watermelon",
-                Price = 2,
-                Inventory = 50
+                Price = 2
             };
 
             var product3 = new Product
             {
                 Id = Guid.NewGuid(),
                 Name = "Orange",
-                Price = 0.5m,
-                Inventory = 5
+                Price = 0.5m
             };
 
             productProvider.Create(product1);
