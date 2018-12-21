@@ -45,30 +45,33 @@ namespace ECommerce.Infrastructure.Data.Prototyping
         {
             var productProvider = this.providerManager.GetProvider<Product>();
 
-            var product1 = new Product
+            var cherries = new Product
             {
                 Id = Guid.NewGuid(),
-                Name = "Apple",
-                Price = 1
+                Name = "Cherries",
+                Price = 1,
+                ImageUrl = @"https://ssl.c.photoshelter.com/img-get/I0000IahmNPYV5G8/t/200/I0000IahmNPYV5G8.jpg"
             };
 
-            var product2 = new Product
+            var raspberries = new Product
             {
                 Id = Guid.NewGuid(),
-                Name = "Watermelon",
-                Price = 2
+                Name = "Raspberries",
+                Price = 2,
+                ImageUrl = @"https://ssl.c.photoshelter.com/img-get/I0000Diz_HuaOFcw/t/200/I0000Diz_HuaOFcw.jpg"
             };
 
-            var product3 = new Product
+            var apricots = new Product
             {
                 Id = Guid.NewGuid(),
-                Name = "Orange",
-                Price = 0.5m
+                Name = "Apricots",
+                Price = 0.5m,
+                ImageUrl = @"https://ssl.c.photoshelter.com/img-get/I0000nY.nQorVMEE/t/200/I0000nY.nQorVMEE.jpg"
             };
 
-            productProvider.Create(product1);
-            productProvider.Create(product2);
-            productProvider.Create(product3);
+            productProvider.Create(cherries);
+            productProvider.Create(raspberries);
+            productProvider.Create(apricots);
 
             this.providerManager.SaveChanges();
 

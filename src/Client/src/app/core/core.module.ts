@@ -1,6 +1,8 @@
 import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { ApiBackendInterceptor } from './interceptors/api-backend.interceptor';
 
 @NgModule({
   declarations: [],
@@ -14,7 +16,9 @@ export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
-      providers: []
+      providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: ApiBackendInterceptor, multi: true }
+      ]
     };
   }
 

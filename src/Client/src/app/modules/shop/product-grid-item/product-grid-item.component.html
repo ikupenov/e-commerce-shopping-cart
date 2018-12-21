@@ -1,3 +1,12 @@
-<mat-grid-list>
-  <mat-grid-tile>Products</mat-grid-tile>
-</mat-grid-list>
+<mat-card>
+  <img mat-card-image [src]="imageUrl">
+  <mat-card-title>{{name}}</mat-card-title>
+  <mat-card-subtitle>{{price | currency:'USD'}}</mat-card-subtitle>
+  <mat-card-actions>
+    <input [(ngModel)]="quantity" style="width: 25%">
+    <button mat-button (click)="onAddToCartClick()">
+      <mat-icon>add_shopping_cart</mat-icon>
+      <span>Add to cart</span>
+    </button>
+  </mat-card-actions>
+</mat-card>

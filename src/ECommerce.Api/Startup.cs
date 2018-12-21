@@ -46,9 +46,25 @@ namespace ECommerce.Api
         {
         }
 
+        public override void ConfigureServices(IServiceCollection services)
+        {
+            services.AddCors();
+
+            base.ConfigureServices(services);
+        }
+
         public override void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseDeveloperExceptionPage().SeedFakeData();
+            app.UseCors(options =>
+            {
+                options
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+            })
+                .UseDeveloperExceptionPage()
+                .SeedFakeData();
 
             base.Configure(app, env);
         }

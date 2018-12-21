@@ -1,3 +1,10 @@
-<p>
-  product-grid works!
-</p>
+<mat-grid-list [cols]="breakpoint" rowHeight="500px" (window:resize)="onResize($event)">
+  <mat-grid-tile *ngFor="let product of getProducts | async">
+    <app-product-grid-item
+      [name]="product.name"
+      [price]="product.price"
+      [imageUrl]="product.imageUrl"
+      (addToCart)="onAddToCart($event)">
+    </app-product-grid-item>
+  </mat-grid-tile>
+</mat-grid-list>
