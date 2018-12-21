@@ -1,22 +1,27 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
-import { SharedModule } from '@app/shared';
+import { NavbarComponent, FooterComponent } from '@app/layouts';
+import { AppRoutingModule } from '@app/app-routing.module';
 import { CoreModule } from '@app/core';
-import { ShopModule } from '@app/shop';
+import { SharedModule } from '@app/shared';
+import { ShopModule } from '@app/modules';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
-    SharedModule.forRoot(),
+    CoreModule.forRoot(),
+    SharedModule,
     AppRoutingModule,
     BrowserModule,
-    CoreModule,
-    ShopModule
+    ShopModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
