@@ -7,7 +7,7 @@ import { NavbarComponent, FooterComponent } from '@app/layouts';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
-import { ShopModule } from '@app/modules';
+import { ShopModule, CartModule } from '@app/modules';
 
 @NgModule({
   declarations: [
@@ -21,6 +21,7 @@ import { ShopModule } from '@app/modules';
     AppRoutingModule,
     BrowserModule,
     ShopModule,
+    CartModule,
     NoopAnimationsModule
   ],
   providers: [],
