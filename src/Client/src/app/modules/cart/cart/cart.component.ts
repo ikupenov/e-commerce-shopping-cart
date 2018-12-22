@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Observable, from } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { CartService, CartItem } from '@app/core';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -7,9 +12,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  cartItems$: Observable<CartItem[]>;
+
+  constructor(private cartService: CartService) { }
 
   ngOnInit() {
+    this.cartItems$ = this.cartService.getCart().pipe(
+      map(c => c.cartItems)
+    );
   }
 
 }

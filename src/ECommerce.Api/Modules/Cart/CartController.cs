@@ -40,10 +40,9 @@ namespace ECommerce.Api.Modules.Cart
 
             this.cartManager.UpdateCartItems(cart, cartItems);
 
-            var updatedCart = this.cartManager.GetCartByUserId(userId);
-            var updatedCartDto = this.mapper.Map<CartDTO>(updatedCart);
+            var cartDto = this.mapper.Map<CartDTO>(cart);
 
-            return Ok(updatedCartDto);
+            return Ok(cartDto);
         }
 
         [HttpDelete]
@@ -56,40 +55,40 @@ namespace ECommerce.Api.Modules.Cart
             return Ok();
         }
 
-        [HttpPut("add")]
-        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(CartItemDTO))]
+        [HttpPost("add")]
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(CartDTO))]
         public IActionResult AddToCart(Guid userId, [FromBody]CartItemDTO cartItemDto)
         {
             var cart = this.cartManager.GetCartByUserId(userId);
             this.cartManager.AddToCart(cart, cartItemDto.Product.Id, cartItemDto.Quantity);
 
-            var cartItem = this.cartManager.GetCartItemByProductId(cartItemDto.Product.Id);
-            var updatedCartItemDto = this.mapper.Map<CartItemDTO>(cartItem);
+            var cartDto = this.mapper.Map<CartDTO>(cart);
 
-            return Ok(updatedCartItemDto);
+            return Ok(cartDto);
         }
 
-        [HttpPut("remove")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [HttpPost("remove")]
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(CartDTO))]
         public IActionResult RemoveFromCart(Guid userId, [FromBody]CartItemDTO cartItemDto)
         {
             var cart = this.cartManager.GetCartByUserId(userId);
             this.cartManager.RemoveFromCart(cart, cartItemDto.Product.Id);
 
-            return Ok();
+            var cartDto = this.mapper.Map<CartDTO>(cart);
+
+            return Ok(cartDto);
         }
 
         [HttpPut("update")]
-        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(CartItemDTO))]
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(CartDTO))]
         public IActionResult UpdateCartItem(Guid userId, [FromBody]CartItemDTO cartItemDto)
         {
             var cart = this.cartManager.GetCartByUserId(userId);
             this.cartManager.UpdateCartItem(cart, cartItemDto.Product.Id, cartItemDto.Quantity);
 
-            var cartItem = this.cartManager.GetCartItemByProductId(cartItemDto.Product.Id);
-            var updatedCartItemDto = this.mapper.Map<CartItemDTO>(cartItem);
+            var cartDto = this.mapper.Map<CartDTO>(cart);
 
-            return Ok(updatedCartItemDto);
+            return Ok(cartDto);
         }
     }
 }

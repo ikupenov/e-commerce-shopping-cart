@@ -27,6 +27,10 @@ namespace ECommerce.Infrastructure.Data
 
             modelBuilder.Entity<CartItem>()
                 .HasOne(i => i.Product);
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Username)
+                .IsUnique();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

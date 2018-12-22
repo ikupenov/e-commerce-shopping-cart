@@ -27,7 +27,7 @@ namespace ECommerce.Infrastructure.Data.Prototyping
 
             var user = new User
             {
-                Id = Guid.NewGuid(),
+                Id = new Guid("0ef27a5d-b9f2-4470-96d2-7123fab03460"),
                 Username = "john.doe",
                 FirstName = "John",
                 LastName = "Doe",
@@ -47,7 +47,7 @@ namespace ECommerce.Infrastructure.Data.Prototyping
 
             var cherries = new Product
             {
-                Id = Guid.NewGuid(),
+                Id = new Guid("94b6339b-b562-4680-b5c4-a3ffe1ea7b73"),
                 Name = "Cherries",
                 Price = 1,
                 ImageUrl = @"https://ssl.c.photoshelter.com/img-get/I0000IahmNPYV5G8/t/200/I0000IahmNPYV5G8.jpg"
@@ -55,7 +55,7 @@ namespace ECommerce.Infrastructure.Data.Prototyping
 
             var raspberries = new Product
             {
-                Id = Guid.NewGuid(),
+                Id = new Guid("b709d501-d63d-4e3d-8df1-99d30b4fed5b"),
                 Name = "Raspberries",
                 Price = 2,
                 ImageUrl = @"https://ssl.c.photoshelter.com/img-get/I0000Diz_HuaOFcw/t/200/I0000Diz_HuaOFcw.jpg"
@@ -63,7 +63,7 @@ namespace ECommerce.Infrastructure.Data.Prototyping
 
             var apricots = new Product
             {
-                Id = Guid.NewGuid(),
+                Id = new Guid("5cb16e5f-52ef-4a7e-b374-760b25be47c6"),
                 Name = "Apricots",
                 Price = 0.5m,
                 ImageUrl = @"https://ssl.c.photoshelter.com/img-get/I0000nY.nQorVMEE/t/200/I0000nY.nQorVMEE.jpg"

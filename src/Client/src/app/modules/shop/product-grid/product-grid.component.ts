@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Observable } from 'rxjs/internal/Observable';
+import { first } from 'rxjs/operators';
 
-import { ProductsService, Product } from '@app/core';
+import { ProductsService, CartService, Product, CartItem } from '@app/core';
 
 @Component({
   selector: 'app-product-grid',
@@ -11,25 +12,38 @@ import { ProductsService, Product } from '@app/core';
 })
 export class ProductGridComponent implements OnInit {
 
-  getProducts: Observable<Product>;
+  products$: Observable<Product[]>;
   breakpoint: number;
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService, private cartService: CartService) { }
 
   ngOnInit() {
-    this.getProducts = this.productsService.getProducts();
-    this.updateBreakpoint(window.innerWidth);
+    this.products$ = this.productsService.getProducts();
+    this.calculateGridBreakpoint(window.innerWidth);
   }
 
-  onAddToCart(product) {
+  onAddToCart(cartItem: CartItem) {
+    this.cartService.addToCart(cartItem).pipe(
+      first()
+    ).subscribe();
   }
 
   onResize(event) {
-    this.updateBreakpoint(event.target.innerWidth);
+    this.calculateGridBreakpoint(event.target.innerWidth);
   }
 
-  private updateBreakpoint(innerWidth: number) {
-    this.breakpoint = (innerWidth <= 400) ? 1 : 6;
+  private calculateGridBreakpoint(innerWidth: number) {
+    if (innerWidth <= 600) {
+      this.breakpoint = 1;
+    } else if (innerWidth <= 700) {
+      this.breakpoint = 2;
+    } else if (innerWidth <= 800) {
+      this.breakpoint = 3;
+    } else if (innerHeight <= 1000) {
+      this.breakpoint = 4;
+    } else {
+      this.breakpoint = 5;
+    }
   }
 
 }

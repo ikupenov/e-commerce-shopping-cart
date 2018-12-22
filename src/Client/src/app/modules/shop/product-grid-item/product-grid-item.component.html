@@ -3,7 +3,7 @@
   <mat-card-title>{{name}}</mat-card-title>
   <mat-card-subtitle>{{price | currency:'USD'}}</mat-card-subtitle>
   <mat-card-actions>
-    <input [(ngModel)]="quantity" style="width: 25%">
+    <input class="app-qnt-input" type="number" min="1" [(ngModel)]="quantity">
     <button mat-button (click)="onAddToCartClick()">
       <mat-icon>add_shopping_cart</mat-icon>
       <span>Add to cart</span>

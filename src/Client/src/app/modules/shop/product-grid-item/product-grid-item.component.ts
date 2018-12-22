@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
+import { Product, CartItem } from '@app/core';
+
 @Component({
   selector: 'app-product-grid-item',
   templateUrl: './product-grid-item.component.html',
@@ -12,22 +14,23 @@ export class ProductGridItemComponent {
   @Input() price: number;
   @Input() imageUrl: string;
 
-  @Output() addToCart = new EventEmitter<ProductEventResult>();
+  @Output() addToCart = new EventEmitter<CartItem>();
 
   quantity = 1;
 
   onAddToCartClick() {
-    const eventResult: ProductEventResult = {
-      id: this.id,
+    const product = new Product();
+    product.id = this.id;
+    product.name = this.name;
+    product.price = this.price;
+    product.imageUrl = this.imageUrl;
+
+    const eventResult: CartItem = {
+      product: product,
       quantity: this.quantity
     };
 
     this.addToCart.emit(eventResult);
   }
 
-}
-
-export interface ProductEventResult {
-  id: string;
-  quantity: number;
 }
