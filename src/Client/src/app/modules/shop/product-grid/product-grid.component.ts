@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/internal/Observable';
 import { first } from 'rxjs/operators';
@@ -39,7 +39,7 @@ export class ProductGridComponent implements OnInit {
       this.breakpoint = 2;
     } else if (innerWidth <= 800) {
       this.breakpoint = 3;
-    } else if (innerHeight <= 1000) {
+    } else if (innerWidth <= 1000) {
       this.breakpoint = 4;
     } else {
       this.breakpoint = 5;

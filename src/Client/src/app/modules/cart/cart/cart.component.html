@@ -1,3 +1,36 @@
-<div *ngFor="let cartItem of cartItems$ | async">
-  <p>{{cartItem.product.name}}</p>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Item</th>
+      <th>Amount</th>
+      <th>Price</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cartItem of cartItems$ | async">
+      <td>
+        <div class="item-thumbnail-container">
+          <img class="item-thumbnail" [src]="cartItem.product.imageUrl">
+        </div>
+      </td>
+      <td>{{cartItem.product.name}}</td>
+      <td>
+        <input class="qnty-input" type="number" min="1" [(ngModel)]="cartItem.quantity">
+      </td>
+      <td>{{cartItem.product.price | currency:'USD'}}</td>
+      <td>{{cartItem.product.price * cartItem.quantity | currency:'USD'}}</td>
+      <td>
+        <button mat-button>
+          <mat-icon>clear</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="cart-footer">
+  <button class="cart-footer-btn" mat-button>Clear</button>
+  <button class="cart-footer-btn" mat-flat-button>Continue</button>
 </div>

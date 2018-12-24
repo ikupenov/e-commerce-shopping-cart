@@ -9,28 +9,19 @@ import { Product, CartItem } from '@app/core';
 })
 export class ProductGridItemComponent {
 
-  @Input() id: string;
-  @Input() name: string;
-  @Input() price: number;
-  @Input() imageUrl: string;
+  @Input() product: Product;
 
   @Output() addToCart = new EventEmitter<CartItem>();
 
   quantity = 1;
 
   onAddToCartClick() {
-    const product = new Product();
-    product.id = this.id;
-    product.name = this.name;
-    product.price = this.price;
-    product.imageUrl = this.imageUrl;
-
-    const eventResult: CartItem = {
-      product: product,
+    const cartItem: CartItem = {
+      product: this.product,
       quantity: this.quantity
     };
 
-    this.addToCart.emit(eventResult);
+    this.addToCart.emit(cartItem);
   }
 
 }
