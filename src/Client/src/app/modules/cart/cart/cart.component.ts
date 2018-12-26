@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { Subject } from 'rxjs';
 import { map, first } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable';
 
-import { CartService, CartItem } from '@app/core';
+import { CartService, CartItem, Cart } from '@app/core';
 
 @Component({
   selector: 'app-cart',
@@ -17,20 +18,32 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
-    this.cartService.getCart().pipe(
-      first(),
-      map(c => c.cartItems)
-    ).subscribe(cartItems => this.cartItems$.next(cartItems));
+    const cart$ = this.cartService.getCart();
+    this.emitCartItems(cart$);
   }
 
-  onClearButtonClick() {
+  onClearCartButtonClick() {
     this.cartService.clearCart().pipe(
       first()
     ).subscribe(() => this.cartItems$.next([]));
   }
 
+  onContinueButtonClick() {
+    alert('Task for another day :)');
+  }
+
   onRemoveFromCart(cartItem: CartItem) {
-    this.cartService.removeFromCart(cartItem).pipe(
+    const cart$ = this.cartService.removeFromCart(cartItem);
+    this.emitCartItems(cart$);
+  }
+
+  onQuantityChange(cartItem: CartItem) {
+    const cart$ = this.cartService.updateCartItem(cartItem);
+    this.emitCartItems(cart$);
+  }
+
+  private emitCartItems($cart: Observable<Cart>) {
+    $cart.pipe(
       first(),
       map(c => c.cartItems)
     ).subscribe(cartItems => this.cartItems$.next(cartItems));

@@ -1,13 +1,13 @@
 <ng-container *ngIf="cartItems$ | async as cartItems">
-  <div class="layout-wh-center">
+  <div class="layout-vh-center">
     <div *ngIf="cartItems.length; else emptyCart">
-      <div id="cart" *ngFor="let cartItem of cartItems">
-        <app-cart-item [cartItem]="cartItem" (removeFromCart)="onRemoveFromCart($event)"></app-cart-item>
+      <div *ngFor="let cartItem of cartItems">
+        <app-cart-item [cartItem]="cartItem" (removeFromCart)="onRemoveFromCart($event)" (quantityChange)="onQuantityChange($event)"></app-cart-item>
       </div>
 
       <div id="cart-footer">
-        <button class="cart-footer-btn" mat-button (click)="onClearButtonClick()">Clear</button>
-        <button class="cart-footer-btn" mat-flat-button>Continue</button>
+        <button class="cart-footer-btn" mat-button (click)="onClearCartButtonClick()">Clear</button>
+        <button class="cart-footer-btn" mat-flat-button (click)="onContinueButtonClick()">Continue</button>
       </div>
     </div>
 

@@ -1,4 +1,4 @@
-<div class="layout-wh-center">
+<div class="layout-v-center">
   <span>
     <div class="item-thumbnail-container">
       <img class="item-thumbnail" [src]="cartItem.product.imageUrl">
@@ -6,7 +6,7 @@
   </span>
   <span>{{cartItem.product.name}}</span>
   <span>
-    <input class="quantity-input" type="number" min="1" [(ngModel)]="cartItem.quantity">
+    <input class="quantity-input" type="number" min="1" [(ngModel)]="cartItem.quantity" (change)="onQuantityChange($event.target.value)">
   </span>
   <span>{{cartItem.product.price | currency:'USD'}}</span>
   <span>{{cartItem.product.price * cartItem.quantity | currency:'USD'}}</span>

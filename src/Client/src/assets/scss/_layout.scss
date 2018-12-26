@@ -3,8 +3,13 @@ div.layout-spacer {
   flex: 1 1 auto;
 }
 
-div.layout-wh-center {
+div.layout-vh-center {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+div.layout-v-center {
+  display: flex;
   align-items: center;
 }

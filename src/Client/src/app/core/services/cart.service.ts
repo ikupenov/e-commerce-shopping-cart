@@ -39,4 +39,8 @@ export class CartService {
     return this.httpClient.post<Cart>(`${serviceUrl}/remove`, cartItem);
   }
 
+  updateCartItem(cartItem: CartItem): Observable<Cart> {
+    return this.httpClient.put<Cart>(`${serviceUrl}/update`, cartItem);
+  }
+
 }
