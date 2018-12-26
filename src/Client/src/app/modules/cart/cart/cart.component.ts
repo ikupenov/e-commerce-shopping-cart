@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Observable, from } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { map, first } from 'rxjs/operators';
 
 import { CartService, CartItem } from '@app/core';
 
@@ -12,14 +12,28 @@ import { CartService, CartItem } from '@app/core';
 })
 export class CartComponent implements OnInit {
 
-  cartItems$: Observable<CartItem[]>;
+  cartItems$ = new Subject<CartItem[]>();
 
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
-    this.cartItems$ = this.cartService.getCart().pipe(
+    this.cartService.getCart().pipe(
+      first(),
       map(c => c.cartItems)
-    );
+    ).subscribe(cartItems => this.cartItems$.next(cartItems));
+  }
+
+  onClearButtonClick() {
+    this.cartService.clearCart().pipe(
+      first()
+    ).subscribe(() => this.cartItems$.next([]));
+  }
+
+  onRemoveFromCart(cartItem: CartItem) {
+    this.cartService.removeFromCart(cartItem).pipe(
+      first(),
+      map(c => c.cartItems)
+    ).subscribe(cartItems => this.cartItems$.next(cartItems));
   }
 
 }

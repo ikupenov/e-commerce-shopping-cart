@@ -1,16 +1,18 @@
-<td>
-  <div class="item-thumbnail-container">
-    <img class="item-thumbnail" [src]="cartItem.product.imageUrl">
-  </div>
-</td>
-<td>{{cartItem.product.name}}</td>
-<td>
-  <input class="qnty-input" type="number" min="1" [(ngModel)]="cartItem.quantity">
-</td>
-<td>{{cartItem.product.price | currency:'USD'}}</td>
-<td>{{cartItem.product.price * cartItem.quantity | currency:'USD'}}</td>
-<td>
-  <button mat-button>
-    <mat-icon>clear</mat-icon>
-  </button>
-</td>
+<div class="layout-wh-center">
+  <span>
+    <div class="item-thumbnail-container">
+      <img class="item-thumbnail" [src]="cartItem.product.imageUrl">
+    </div>
+  </span>
+  <span>{{cartItem.product.name}}</span>
+  <span>
+    <input class="quantity-input" type="number" min="1" [(ngModel)]="cartItem.quantity">
+  </span>
+  <span>{{cartItem.product.price | currency:'USD'}}</span>
+  <span>{{cartItem.product.price * cartItem.quantity | currency:'USD'}}</span>
+  <span>
+    <button mat-button (click)="onRemoveButtonClick()">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </span>
+</div>

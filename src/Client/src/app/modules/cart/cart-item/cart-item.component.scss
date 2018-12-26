@@ -1,6 +1,6 @@
 .item-thumbnail-container {
   display: inline-block;
-  height: 90px;
+  max-height: 90px;
   width: 60px;
 }
 
@@ -10,6 +10,10 @@
   overflow: hidden;
 }
 
-.qnty-input {
+.quantity-input {
   width: 50px;
+}
+
+span + span {
+  margin-left: 10px;
 }

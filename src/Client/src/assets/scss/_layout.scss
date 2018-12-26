@@ -1,0 +1,10 @@
+div.layout-spacer {
+  display: inline-block;
+  flex: 1 1 auto;
+}
+
+div.layout-wh-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

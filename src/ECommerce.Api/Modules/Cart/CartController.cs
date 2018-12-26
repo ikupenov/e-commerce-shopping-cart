@@ -46,13 +46,13 @@ namespace ECommerce.Api.Modules.Cart
         }
 
         [HttpDelete]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public IActionResult ClearCart(Guid userId)
         {
             var cart = this.cartManager.GetCartByUserId(userId);
             this.cartManager.ClearCart(cart);
 
-            return Ok();
+            return NoContent();
         }
 
         [HttpPost("add")]
