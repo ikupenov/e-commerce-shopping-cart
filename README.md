@@ -13,7 +13,7 @@ _Brief overview:_
 
 
 _What I didn't do but wish I did:_
-*Write tests
-*Error handling
-*Code documentation
-*Fancy UI
+* Write tests
+* Error handling
+* ode documentation
+* Fancy UI
