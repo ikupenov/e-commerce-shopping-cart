@@ -1,3 +1,4 @@
+# E-commerce Shopping Cart #
 The server-side is targetting __.NET Core v2.2__ and the client - __Angular v7__.
 "ECommerce.Api" is the server-side startup project which is compatible with .NET Core 2.2 only.
 In order to start the client-side application, you need NodeJS and NPM (I used the LTS versions as of current date - v10.15 and v6.5, respectively).
