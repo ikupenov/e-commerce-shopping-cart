@@ -6,10 +6,10 @@ I've developed and tested it on Windows 10 machine, only, so I am not sure if th
 There are several environments, please use the default (development) ones.
 
 _Brief overview:_
-*I've used Swagger in order to document the web API
-*I am using in-memory Entity framework for storage
-*Clean architecture based approach. Business logic and contracts are located in the Core project.
-*Database, external system's logic and implementations are located in the Infrastructure project.
+* I've used Swagger in order to document the web API
+* I am using in-memory Entity framework for storage
+* Clean architecture based approach. Business logic and contracts are located in the Core project.
+* Database, external system's logic and implementations are located in the Infrastructure project.
 
 
 _What I didn't do but wish I did:_
