@@ -3,7 +3,7 @@ The server-side is targetting __.NET Core v2.2__ and the client - __Angular v7__
 In order to start the client-side application, you need NodeJS and NPM (I used the LTS versions as of current date - v10.15 and v6.5, respectively).
 I've developed and tested it on Windows 10 machine, only, so I am not sure if the application will misbehave on macOS or Linux.
 
-There are several environments, please use the default (development) ones.
+__There are several environments, please use the default (development) ones.__
 
 _Brief overview:_
 * I've used Swagger in order to document the web API
