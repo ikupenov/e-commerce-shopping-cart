@@ -16,5 +16,5 @@ _Brief overview:_
 _What I didn't do but wish I did:_
 * Write tests
 * Error handling
-* ode documentation
+* Code documentation
 * Fancy UI
