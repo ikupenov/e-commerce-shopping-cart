@@ -2,11 +2,11 @@
 
 namespace ECommerce.Api.Modules.Cart
 {
-    internal class CartItemValidator : AbstractValidator<CartItemDTO>
+    public class CartItemValidator : AbstractValidator<CartItemDTO>
     {
         public CartItemValidator()
         {
-            RuleFor(x => x.Quantity > 0);
+            RuleFor(x => x.Quantity).GreaterThan(0);
         }
     }
 }
